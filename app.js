@@ -5,10 +5,11 @@ const koaBody = require('koa-body')
 const responseHandler = require('./middlewares').responseHandler
 const userRouter = require('./modules/user').router(router)
 
-const app = module.exports = new Koa()
+const app = new Koa()
 
 app.use(koaBody())
 
+router.get('/', async ctx => ctx.body = 'test')
 app
   .use(userRouter.routes())
   .use(userRouter.allowedMethods())
@@ -16,4 +17,4 @@ app
 app.use(responseHandler)
 
 const port = process.env.PORT | 8080
-app.listen(port)
+const server = module.exports = app.listen(port).on('error', (error) => console.log(error))
