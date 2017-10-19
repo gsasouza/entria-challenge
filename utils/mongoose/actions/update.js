@@ -1,1 +1,1 @@
-module.exports = (Model) => (query, user) => Model.update(query, user).exec()
+module.exports = (Model) => (query, doc) => Model.update(query, doc).exec()

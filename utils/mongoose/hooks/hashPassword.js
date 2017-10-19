@@ -1,6 +1,7 @@
 const bCrypt = require('bcrypt')
-module.exports = (schema) => {
-  schema.pre('save', async function (next) {
+
+const hashHook = (onAction) => {
+  schema.pre(onAction, async function (next) {
     try {
       if (!this.isModified('password')) return next()
       const salt = await bCrypt.genSalt(10)
@@ -11,3 +12,5 @@ module.exports = (schema) => {
     }
   })
 }
+module.exports = (schema) => ['save', 'update'].forEach(action => hashHook(action))
+
