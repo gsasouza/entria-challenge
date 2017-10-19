@@ -1,9 +1,9 @@
 const request = require('supertest')
 const server = require('../../app')
+const model = require('./model')
+const crudTests = require('../../tests/crudTests')(request, server, ['username', 'password', 'name', 'email', 'createdAt'], model)
 
-describe('First test', () => {
-  test('Should get an empty array', async () => {
-    const response = await request(server).get('/users')
-    expect(response.statusCode).toBe(200)
-  })
+describe('User', () => {
+  crudTests.create()
+  crudTests.findAll()
 })

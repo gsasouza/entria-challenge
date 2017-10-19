@@ -17,4 +17,4 @@ app
 app.use(responseHandler)
 
 const port = process.env.PORT | 8080
-const server = module.exports = app.listen(port).on('error', (error) => console.log(error))
+module.exports = app.listen(port).on('error', (error) => {})
