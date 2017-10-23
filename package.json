@@ -14,6 +14,7 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "codecov": "^3.0.0",
     "rosie": "^1.6.0",
     "standard": "^10.0.3"
   },
