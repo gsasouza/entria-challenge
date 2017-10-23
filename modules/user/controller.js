@@ -43,7 +43,6 @@ const update = async (ctx, next) => {
     if (!data) ctx.state.error = { name: 'NotFound' }
     else ctx.state.success = {type: 'updated', data}
   } catch (err) {
-    console.log(err)
     ctx.state.error = err
   } finally {
     next()

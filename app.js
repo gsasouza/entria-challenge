@@ -10,22 +10,10 @@ const app = new Koa()
 
 app.use(koaBody())
 
-// router.get('/', async ctx => ctx.body = {teste: 'teste'})
 app
   .use(userRouter.routes())
 
 app.use(responseHandler)
-
-app.use(async (ctx, next) => {
-  try {
-    await next()
-  } catch (err) {
-    console.log(err)
-    ctx.status = err.status || 500
-    ctx.body = err.message
-    ctx.app.emit('error', err, ctx)
-  }
-})
 
 const port = process.env.PORT | 8000
 module.exports = app.listen(port).on('error', (error) => console.log(error))
