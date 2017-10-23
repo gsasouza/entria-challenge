@@ -6,9 +6,10 @@ function mongoError (ctx, error) {
 }
 
 function unexpected (ctx, error) {
+  console.log(error)
   ctx.status = 500
   const message = 'Unexpected Error'
-  ctx.body = new Response(500, message, error)
+  ctx.body = new Response(500, message, {error})
 }
 
 function alreadyRegistered (ctx) {
@@ -22,8 +23,7 @@ function notFound (ctx) {
 }
 
 function validation (ctx, errors) {
-  const description = []
-  Object.keys(errors).forEach(key => description.push(errors[key].message))
+  const description = Object.keys(errors).map(key => errors[key].message)
   ctx.status = 401
   ctx.body = new Response(401, 'Validation Error', {errors: description})
 }
@@ -39,16 +39,10 @@ function notAuthorized (ctx) {
 }
 
 module.exports = function (ctx, error) {
-  switch (error.name){
+  switch (error.name) {
     case 'MongoError': return mongoError(ctx, error)
     case 'NotFound': return notFound(ctx, error)
     case 'ValidationError': return validation(ctx, error.errors)
-    case 'InvalidCnpj':
-      error.errors = {'InvalidCnpj': { message: 'cnpj filled in form is invalid'}}
-      return validation(ctx, error.errors)
-    case 'InvalidCa':
-      error.errors = { 'InvalidCa': { message: 'caNumber filled in form is invalid' } }
-      return validation(ctx, error.errors)
     case 'InvalidPassword': return invalidPassword(ctx, error)
     case 'NotAuthorized': return notAuthorized(ctx, error)
     default: return unexpected(ctx, error)

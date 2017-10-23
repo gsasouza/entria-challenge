@@ -1,1 +1,1 @@
-module.exports = (Model) => (query = {}) => Model.findOneAndRemove(query).lean().exec()
+module.exports = (Model) => (query = {_id: 0}) => Model.findOneAndRemove(query).lean().exec()

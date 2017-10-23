@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "jest --silent --forceExit",
+    "test": "jest --forceExit",
     "start": "node app"
   },
   "author": "",
@@ -15,6 +15,7 @@
   },
   "dependencies": {
     "bcrypt": "^1.0.3",
+    "bluebird": "^3.5.1",
     "jest": "^21.2.1",
     "koa": "^2.3.0",
     "koa-body": "^2.5.0",
