@@ -29,7 +29,7 @@ const findOne = async (ctx, next) => {
   try {
     const data = await actions.findOne(ctx.params)
     if (!data) ctx.state.error = { name: 'NotFound' }
-    else ctx.state.success = {type: 'loaded', data: Object.assign(data, {createdAt: data.createdAt.toString()})}
+    else ctx.state.success = {type: 'loaded', data}
   } catch (err) {
     ctx.state.error = err
   } finally {

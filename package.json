@@ -14,18 +14,22 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "codecov": "^3.0.0",
+    "dotenv": "^4.0.0",
+    "jest": "^21.2.1",
     "rosie": "^1.6.0",
-    "standard": "^10.0.3"
+    "standard": "^10.0.3",
+    "supertest": "^3.0.0"
   },
   "dependencies": {
     "bcrypt": "^1.0.3",
     "bluebird": "^3.5.1",
-    "jest": "^21.2.1",
+    "jsonwebtoken": "^8.1.0",
     "koa": "^2.3.0",
     "koa-body": "^2.5.0",
+    "koa-passport": "^4.0.1",
     "koa-router": "^7.2.1",
     "mongoose": "^4.12.1",
-    "supertest": "^3.0.0"
+    "passport-custom": "^1.0.5",
+    "passport-jwt": "^3.0.0"
   }
 }

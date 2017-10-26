@@ -1,5 +1,5 @@
 const mongoose = require('mongoose')
-const dbUrl = 'mongodb://gabriel:gabriel123@ds121955.mlab.com:21955/entria-challenge'
+const dbUrl = process.env.DB_URL
 
 mongoose.Promise = global.Promise
 mongoose.connect(dbUrl, {useMongoClient: true})

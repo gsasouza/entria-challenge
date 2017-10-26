@@ -1,17 +1,17 @@
+require('dotenv').config()
 const Koa = require('koa')
 const Router = require('koa-router')
 const koaBody = require('koa-body')
-global.Promise = require('bluebird')
-
+const passport = require('./modules/auth').passport
+const routerMiddleware = require('./middlewares/router')(Router)
 const responseHandler = require('./middlewares').responseHandler
-const userRouter = require('./modules/user').router(new Router({prefix: '/users'}))
 
 const app = new Koa()
 
 app.use(koaBody())
+app.use(passport.middleware)
 
-app
-  .use(userRouter.routes())
+app.use(routerMiddleware.routes())
 
 app.use(responseHandler)
 
