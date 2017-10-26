@@ -11,8 +11,6 @@ module.exports = new CustomStrategy(async (ctx, done) => {
     }
     return done(null, false)
   } catch (error) {
-    console.log(error)
-    ctx.state.error = error
     done(error)
   }
 })

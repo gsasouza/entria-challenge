@@ -5,14 +5,14 @@ const koaBody = require('koa-body')
 const passport = require('./modules/auth').passport
 const routerMiddleware = require('./middlewares/router')(Router)
 const responseHandler = require('./middlewares').responseHandler
+global.Promise = require('bluebird')
 
 const app = new Koa()
 
 app.use(koaBody())
+
 app.use(passport.middleware)
-
 app.use(routerMiddleware.routes())
-
 app.use(responseHandler)
 
 const port = process.env.PORT | 8000

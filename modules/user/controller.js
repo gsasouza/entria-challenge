@@ -10,7 +10,7 @@ const create = async (ctx, next) => {
   } catch (err) {
     ctx.state.error = err
   } finally {
-    next()
+    await next()
   }
 }
 
@@ -21,7 +21,7 @@ const findAll = async (ctx, next) => {
   } catch (err) {
     ctx.state.error = err
   } finally {
-    next()
+    await next()
   }
 }
 
@@ -33,7 +33,7 @@ const findOne = async (ctx, next) => {
   } catch (err) {
     ctx.state.error = err
   } finally {
-    next()
+    await next()
   }
 }
 
@@ -45,7 +45,7 @@ const update = async (ctx, next) => {
   } catch (err) {
     ctx.state.error = err
   } finally {
-    next()
+    await next()
   }
 }
 
@@ -57,7 +57,7 @@ const remove = async (ctx, next) => {
   } catch (err) {
     ctx.state.error = err
   } finally {
-    next()
+    await next()
   }
 }
 

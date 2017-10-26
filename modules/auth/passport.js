@@ -20,18 +20,18 @@ passport.deserializeUser((id, done) => (async () => {
   }
 })())
 
-const isAuthenticated = () => passport.authenticate('jwt')
+const isAuthenticated = () => passport.authenticate('jwt', { session: false })
 const authenticate = () => passport.authenticate('username')
 
 const generateToken = () => async (ctx, next) => {
   const { user } = ctx.state
   if (!user) ctx.state.error = {name: 'NotAuthorized'}
   else {
-    const { username, name } = user
-    const token = { token: `JWT ${jwt.sign({ username, name }, secret)}` }
+    const { username, name, _id } = user
+    const token = { token: `bearer ${jwt.sign({ _id, username, name }, secret)}` }
     ctx.state.success = { type: 'loaded', data: token }
   }
   next()
 }
 
-module.exports = {middleware: passport.initialize(), isAuthenticated, authenticate, generateToken}
+module.exports = {middleware: passport.initialize(), isAuthenticated, authenticate, generateToken, passport}

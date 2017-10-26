@@ -2,12 +2,16 @@ const User = require('../../user').model
 const {Strategy, ExtractJwt} = require('passport-jwt')
 
 const opts = {
-  jwtFromRequest: ExtractJwt.fromHeader('Authorization'),
+  jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
   secretOrKey: process.env.SECRET
 }
 
 module.exports = new Strategy(opts, async (payload, done) => {
-  const user = await User.findById(payload)
-  if (!user) return done(null, false)
-  return done(null, user)
+  try {
+    const user = await User.findOne({ _id: payload._id })
+    if (!user) await done(null, false)
+    await done(null, user)
+  } catch (err) {
+    await done(err)
+  }
 })
