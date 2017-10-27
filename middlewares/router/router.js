@@ -15,7 +15,7 @@ module.exports = (Router) => {
   modules.forEach((module) => {
     const moduleName = module.split('\\').pop()
     const router = require(`${module}/router`)(new Router({prefix: moduleName}))
-    if (moduleName !== 'auth') {
+    if (moduleName !== 'auth' && process.env.NODE_ENV !== 'test') {
       router.use(isAuthenticated())
     }
     apiRouter.use('/', router.routes(), router.allowedMethods())

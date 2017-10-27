@@ -20,9 +20,4 @@ function removed (ctx) {
   ctx.body = new Response(200, 'Successfully removed')
 }
 
-function custom (ctx, message, optData) {
-  ctx.status = 200
-  ctx.body = new Response(200, message, optData)
-}
-
-module.exports = {loaded, created, updated, removed, custom}
+module.exports = {loaded, created, updated, removed}

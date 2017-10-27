@@ -28,23 +28,11 @@ function validation (ctx, errors) {
   ctx.body = new Response(401, 'Validation Error', {errors: description})
 }
 
-function invalidLogin (ctx) {
-  ctx.status = 400
-  ctx.body = new Response(400, 'Login data doesnt match')
-}
-
-function notAuthorized (ctx) {
-  ctx.status = 401
-  ctx.body = new Response(401, 'Not Authorized')
-}
-
 module.exports = function (ctx, error) {
   switch (error.name) {
     case 'MongoError': return mongoError(ctx, error)
     case 'NotFound': return notFound(ctx, error)
     case 'ValidationError': return validation(ctx, error.errors)
-    case 'InvalidPassword': return invalidLogin(ctx, error)
-    case 'NotAuthorized': return notAuthorized(ctx, error)
     default: return unexpected(ctx, error)
   }
 }

@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "jest --forceExit && codecov",
+    "test": "jest --silent --forceExit && codecov",
     "start": "node app"
   },
   "jest": {
