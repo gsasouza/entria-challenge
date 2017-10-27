@@ -1,5 +1,5 @@
 const passport = require('koa-passport')
-const User = require('../user').model
+const User = require('../users').model
 const jwt = require('jsonwebtoken')
 const secret = process.env.SECRET
 

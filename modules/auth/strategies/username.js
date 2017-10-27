@@ -1,4 +1,4 @@
-const User = require('../../user').model
+const User = require('../../users').model
 const CustomStrategy = require('passport-custom')
 
 module.exports = new CustomStrategy(async (ctx, done) => {
