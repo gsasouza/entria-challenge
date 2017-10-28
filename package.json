@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "SET NODE_ENV=test&&jest --silent --forceExit && codecov",
+    "testWin": "SET NODE_ENV=test&&jest --silent --forceExit && codecov",
+    "test": "jest --silent --forceExit && codecov",
     "start": "node app"
   },
   "jest": {
