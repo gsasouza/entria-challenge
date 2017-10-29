@@ -13,7 +13,7 @@
 #### Extras
 - [x] Add tests using Jest
 - [x] Add authentication
-- [ ] Add docker support
+- [x] Add docker support
 - [ ] Create a GraphQL Type for the model created, and expose it in a GraphQL endpoint
 
 ## Install Instructions

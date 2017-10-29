@@ -1,7 +1,7 @@
 const { lstatSync, readdirSync } = require('fs')
 const { join } = require('path')
 const { isAuthenticated } = require('../../modules/auth').passport
-const modulesPath = `${__dirname}../../../modules/`
+const modulesPath = join(__dirname, '../../modules/')
 
 const isDirectory = source => lstatSync(source).isDirectory()
 
