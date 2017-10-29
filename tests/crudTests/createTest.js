@@ -1,4 +1,5 @@
-module.exports = (request, server, requiredFields, uniqueFields, newModel, modelName, endpoint, Factory) => {
+module.exports = (request, server, requiredFields, uniqueFields, modelName, endpoint, Factory, Model) => {
+  const newModel = new Model(Factory.build(modelName))
   describe('Create', () => {
     test('Should create', async() => {
       const response = await request(server).post(`/api/${endpoint}`).send(newModel)

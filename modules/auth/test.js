@@ -19,5 +19,4 @@ describe('Auth', () => {
     const response = await request(server).post('/api/auth/login').send({ username, password: '000'})
     expect(response.statusCode).toBe(401)
   })
-  afterAll(async () => User.remove())
 })
