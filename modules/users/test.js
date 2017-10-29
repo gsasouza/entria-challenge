@@ -9,26 +9,21 @@ const Factory = require('../../tests/factory')
 
 describe('User', () => {
   const user = new User(Factory.build('User'))
-  console.log(user)
-
-  beforeAll(async () => user.save)
-  // afterAll(async () => User.remove())
 
   describe('Create', () => {
-    const newUser = Factory.build('User')
     test('Should create', async () => {
-      const response = await request(server).post('/api/users').send(newUser)
+      const response = await request(server).post('/api/users').send(user)
       expect(response.statusCode).toBe(201)
     })
     requiredFields.forEach((field) => {
       test(`Should not create with empty ${field}`, async () => {
-        const response = await request(server).post('/api/users').send(Object.assign({}, newUser, { [field]: null }))
+        const response = await request(server).post('/api/users').send(Object.assign({}, user, { [field]: null }))
         expect(response.statusCode).toBe(401)
       })
     })
     uniqueFields.forEach((field, index) => {
       test(`Should not create with an existent ${field}`, async () => {
-        const obj = Object.assign(Factory.build('User'), { [field]: newUser[field] })
+        const obj = Object.assign(Factory.build('User'), { [field]: user[field] })
         const response = await request(server).post('/api/users').send(obj)
         expect(response.statusCode).toBe(409)
       })
@@ -44,7 +39,6 @@ describe('User', () => {
 
   describe('Find one', () => {
     test('Should find', async () => {
-      console.log(user._id)
       const response = await request(server).get(`/api/users/${user._id}`)
       expect(response.statusCode).toBe(200)
     })
