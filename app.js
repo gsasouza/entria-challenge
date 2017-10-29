@@ -15,6 +15,5 @@ app.use(koaBody())
 app.use(passport.middleware)
 app.use(routerMiddleware.routes())
 app.use(responseHandler)
-console.log(routerMiddleware)
 
 module.exports = app.listen(port).on('error', (error) => console.log(error))

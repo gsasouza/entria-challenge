@@ -44,6 +44,7 @@ describe('User', () => {
 
   describe('Find one', () => {
     test('Should find', async () => {
+      console.log(user._id)
       const response = await request(server).get(`/api/users/${user._id}`)
       expect(response.statusCode).toBe(200)
     })

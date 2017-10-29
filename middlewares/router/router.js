@@ -1,5 +1,5 @@
 const { lstatSync, readdirSync } = require('fs')
-const { join } = require('path')
+const { join, sep } = require('path')
 const { isAuthenticated } = require('../../modules/auth').passport
 const modulesPath = join(__dirname, '../../modules/')
 
@@ -13,7 +13,7 @@ module.exports = (Router) => {
   const modules = getDirectories(modulesPath)
 
   modules.forEach((module) => {
-    const moduleName = module.split('\\').pop()
+    const moduleName = module.split(sep).pop()
     const router = require(`${module}/router`)(new Router({prefix: moduleName}))
     if (moduleName !== 'auth' && process.env.NODE_ENV !== 'test') {
       router.use(isAuthenticated())
